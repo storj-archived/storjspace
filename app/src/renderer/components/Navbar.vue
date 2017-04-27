@@ -5,16 +5,15 @@
 
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-    <b-link class="navbar-brand" to="#">
+    <b-link class="navbar-brand" to="landing-page">
       <span>StorjSpace</span>
     </b-link>
 
     <b-collapse is-nav id="nav_collapse">
 
       <b-nav is-nav-bar>
-        <b-nav-item>Buckets</b-nav-item>
-        <b-nav-item>Settings</b-nav-item>
-        <b-nav-item>Dashboard</b-nav-item>
+        <b-nav-item to="dashboard">Dashboard</b-nav-item>
+        <b-nav-item to="buckets">Buckets</b-nav-item>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
@@ -26,7 +25,7 @@
             <span style="font-weight: bold;">User</span>
           </template>
 
-          <b-dropdown-item to="#">Profile</b-dropdown-item>
+          <b-dropdown-item to="#">Settings</b-dropdown-item>
           <b-dropdown-item to="#">Signout</b-dropdown-item>
         </b-nav-item-dropdown>
 
@@ -43,5 +42,5 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="stylus">
 </style>
