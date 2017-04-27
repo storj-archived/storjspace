@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Electron from 'vue-electron'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
-
+import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import routes from './routes'
 
+Vue.use(BootstrapVue)
 Vue.use(Electron)
 Vue.use(Resource)
 Vue.use(Router)

@@ -80,6 +80,7 @@
     "webpack-merge": "^2.4.0"
   },
   "dependencies": {
+    "bootstrap-vue": "^0.14.0",
     "storj": "^4.0.1",
     "vuex": "^2.3.1"
   }
