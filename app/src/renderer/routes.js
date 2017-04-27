@@ -20,6 +20,11 @@ export default [
     component: require('components/SettingsView')
   },
   {
+    path: '/upload',
+    name: 'upload',
+    component: require('components/UploadView.vue')
+  },
+  {
     path: '*',
     redirect: '/'
   }

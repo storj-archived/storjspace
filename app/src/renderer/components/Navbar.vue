@@ -14,6 +14,7 @@
       <b-nav is-nav-bar>
         <b-nav-item to="dashboard">Dashboard</b-nav-item>
         <b-nav-item to="buckets">Buckets</b-nav-item>
+        <b-nav-item to="upload">Upload Files</b-nav-item>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
