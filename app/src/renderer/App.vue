@@ -1,12 +1,15 @@
 <template>
   <div id="app">
+    <Navbar></Navbar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  import Navbar from './components/Navbar'
   import store from 'renderer/vuex/store'
   export default {
+    components: { Navbar },
     store
   }
 </script>
@@ -20,10 +23,9 @@
   }
 
   html,
-  body { height: 100%; }
+  body { height: 100%; width: 100%; }
 
   body {
-    align-items: center;
     background:
       radial-gradient(
         ellipse at center,
@@ -31,9 +33,6 @@
         rgba(229, 229, 229, .85) 100%
       );
     background-position: center;
-    display: flex;
     font-family: Lato, Helvetica, sans-serif;
-    justify-content: center;
-    text-align: center;
   }
 </style>

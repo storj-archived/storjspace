@@ -1,30 +1,36 @@
 <template>
   <div>
-    <img src="./LandingPageView/assets/logo.png" alt="electron-vue">
-    <h1>Welcome.</h1>
-    <current-page></current-page>
-    <versions></versions>
-    <links></links>
+    <div class="login">
+      <h1>Login to Storj</h1>
+
+      <b-form-input
+        type="text"
+        placeholder="Email">
+      </b-form-input>
+
+      <b-form-input
+        type="password"
+        placeholder="Password">
+      </b-form-input>
+
+      <b-button>
+        Login
+      </b-button>
+    </div>
   </div>
 </template>
 
 <script>
-  import CurrentPage from './LandingPageView/CurrentPage'
-  import Links from './LandingPageView/Links'
-  import Versions from './LandingPageView/Versions'
   export default {
-    components: {
-      CurrentPage,
-      Links,
-      Versions
-    },
+    components: {},
     name: 'landing-page'
   }
 </script>
 
-<style scoped>
-  img {
-    margin-top: -25px;
-    width: 450px;
-  }
+<style scoped lang="stylus">
+  .login
+    width: 600px
+    margin: 0 auto
+    margin-top: 300px
+    text-align: center
 </style>
