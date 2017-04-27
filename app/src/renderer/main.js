@@ -12,6 +12,10 @@ Vue.use(Resource)
 Vue.use(Router)
 Vue.config.debug = true
 
+// Import styles
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 const router = new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes
