@@ -15,6 +15,11 @@ export default [
     component: require('components/DashboardView')
   },
   {
+    path: '/settings',
+    name: 'settings',
+    component: require('components/SettingsView')
+  },
+  {
     path: '*',
     redirect: '/'
   }
