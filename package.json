@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^0.14.0",
-    "storj": "^4.0.1",
+    "vue": "^2.3.0",
     "vuex": "^2.3.1"
   }
 }
