@@ -37,7 +37,17 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data () {
+    return {
+      user: {
+        _id: '',
+        email: ''
+      }
+    }
+  },
+  components: {},
+  methods: {}
 }
 </script>
 
