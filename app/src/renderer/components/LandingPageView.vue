@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="login">
-      <h1>Login to Storj</h1>
+      <div class="header">
+        <h1>Login to Storj</h1>
+      </div>
 
       <b-form-input
         type="text"
@@ -31,6 +33,6 @@
   .login
     width: 600px
     margin: 0 auto
-    margin-top: 300px
+    margin-top: 100px
     text-align: center
 </style>

@@ -1,18 +1,23 @@
 <template lang="html">
     <div class="dashboard">
-      <h1>Dashboard</h1>
-
-      <div class="storage">
-          Storage: {{storage}}
+      <div class="header">
+        <h1>Dashboard</h1>
       </div>
 
-      <div class="bandwidth">
-          Bandwidth: {{bandwidth}}
-      </div>
+      <div class="row metrics">
+          <div class="col storage">
+            <b-card header="Storage"
+              class="mb-2">
+              <h1>{{ storage }}</h1>
+            </b-card>
+          </div>
 
-      <div class="transactions">
-          Transactions:
-          {{transactions}}
+          <div class="col bandwidth">
+            <b-card header="Storage"
+              class="mb-2">
+              <h1>{{ bandwidth }}</h1>
+            </b-card>
+          </div>
       </div>
     </div>
 </template>
@@ -35,5 +40,16 @@ export default {
 </script>
 
 <style lang="stylus">
+  .dashboard
+    margin: 20px
 
+  .header
+    margin-top: 40px
+    text-align: center
+
+  .storage .bandwidth
+    text-align: center
+
+  .metrics
+    margin-top: 40px
 </style>

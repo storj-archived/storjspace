@@ -1,15 +1,13 @@
 <template lang="html">
   <div>
-
     <b-navbar toggleable type="inverse" variant="primary">
+      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-    <b-nav-toggle target="nav_collapse"></b-nav-toggle>
+      <b-link class="navbar-brand" to="landing-page">
+        <span>StorjSpace</span>
+      </b-link>
 
-    <b-link class="navbar-brand" to="landing-page">
-      <span>StorjSpace</span>
-    </b-link>
-
-    <b-collapse is-nav id="nav_collapse">
+      <b-collapse is-nav id="nav_collapse">
 
       <b-nav is-nav-bar>
         <b-nav-item to="dashboard">Dashboard</b-nav-item>
