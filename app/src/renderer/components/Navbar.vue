@@ -4,7 +4,7 @@
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
       <b-link class="navbar-brand" to="landing-page">
-        <span>StorjSpace</span>
+        <span><img src="../static/logos/logo-white.svg" height="40px" alt="Storj Labs"></span><span class="logo-text"> Space</span>
       </b-link>
 
       <b-collapse is-nav id="nav_collapse">
@@ -24,8 +24,8 @@
             <span style="font-weight: bold;">User</span>
           </template>
 
-          <b-dropdown-item to="#">Settings</b-dropdown-item>
-          <b-dropdown-item to="#">Signout</b-dropdown-item>
+          <b-dropdown-item to="settings">Settings</b-dropdown-item>
+          <b-dropdown-item to="#" >Signout</b-dropdown-item>
         </b-nav-item-dropdown>
 
       </b-nav>
@@ -52,4 +52,6 @@ export default {
 </script>
 
 <style lang="stylus">
+.logo-text
+  font-size: 16px
 </style>

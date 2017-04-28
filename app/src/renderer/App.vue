@@ -1,21 +1,30 @@
 <template>
-  <div id="app">
-    <Navbar></Navbar>
-    <router-view></router-view>
-  </div>
+<div id="app">
+  <Navbar></Navbar>
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
-  import Navbar from './components/Navbar'
-  import store from 'renderer/vuex/store'
-  export default {
-    components: { Navbar },
-    store
-  }
+import Navbar from './components/Navbar'
+import store from 'renderer/vuex/store'
+import Storj from 'vendor/storj.es5.js'
+
+const storj = new Storj()
+
+storj.getKeyList()
+
+export default {
+  components: {
+    Navbar
+  },
+  store
+}
 </script>
 
-<style>
-  @import url(https://fonts.googleapis.com/css?family=Lato:300);
+<style lang="stylus">
+  @import url(https://fonts.googleapis.com/css?family=Lato:300)
+  @import './theme/theme.styl'
 
   * {
     margin: 0;
@@ -23,9 +32,11 @@
   }
 
   html,
-  body { height: 100%; width: 100%; }
+  body
+    height: 101%
+    width: 100%
 
-  body {
+  body
     background:
       radial-gradient(
         ellipse at center,
@@ -34,5 +45,4 @@
       );
     background-position: center;
     font-family: Lato, Helvetica, sans-serif;
-  }
 </style>
