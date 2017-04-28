@@ -1,8 +1,8 @@
 <template>
-<div id="app">
-  <Navbar></Navbar>
-  <router-view></router-view>
-</div>
+  <div id="app">
+    <Navbar></Navbar>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -23,7 +23,6 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import url(https://fonts.googleapis.com/css?family=Lato:300)
   @import './theme/theme.styl'
 
   * {
@@ -44,5 +43,5 @@ export default {
         rgba(229, 229, 229, .85) 100%
       );
     background-position: center;
-    font-family: Lato, Helvetica, sans-serif;
+    font-family: Avenir, Helvetica, sans-serif;
 </style>
