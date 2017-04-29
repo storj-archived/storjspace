@@ -8,6 +8,14 @@
 
 <script>
 export default {
+  name: 'SettingsView',
+  data () {
+    return {}
+  },
+  methods: {},
+  mounted () {
+    console.log('SettingsView')
+  }
 }
 </script>
 

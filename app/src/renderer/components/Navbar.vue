@@ -10,13 +10,12 @@
       <b-collapse is-nav id="nav_collapse">
 
       <b-nav is-nav-bar>
-        <b-nav-item to="dashboard">Dashboard</b-nav-item>
-        <b-nav-item to="buckets">Buckets</b-nav-item>
-        <b-nav-item to="upload">Upload Files</b-nav-item>
+        <b-nav-item :to="{ name: 'dashboard' }">Dashboard</b-nav-item>
+        <b-nav-item :to="{ name: 'buckets' }">Buckets</b-nav-item>
+        <b-nav-item :to="{ name: 'upload' }">Upload Files</b-nav-item>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
-
         <b-nav-item-dropdown right-alignment>
 
           <!-- Using text slot -->

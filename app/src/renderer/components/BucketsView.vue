@@ -6,9 +6,9 @@
 
       <div class="bucket-list container">
         <b-list-group>
-          <b-list-group-item to="#" v-for="bucket in buckets">
-            {{ bucket }}
-          </b-list-group-item>
+            <b-list-group-item :to="{name: 'files', params: { bucketId: bucket._id}}" v-for="bucket in buckets">
+              {{ bucket }}
+            </b-list-group-item>
         </b-list-group>
       </div>
 
@@ -25,6 +25,12 @@ export default {
         { _id: 2, name: 'bucket 2' },
         { _id: 3, name: 'bucket 3' }
       ]
+    }
+  },
+  methods: {
+    goToFiles (bucketId) {
+      console.log('goToFiles', bucketId)
+      this.$router.push({name: 'files', params: { bucketId: bucketId }})
     }
   }
 }

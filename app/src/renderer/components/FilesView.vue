@@ -1,25 +1,26 @@
 <template lang="html">
     <div class="files">
         <div class="header">
-            Files - {{bucket}}
+            <h1>Files</h1>
+        </div>
+        <div class="files-list container">
+
         </div>
     </div>
 </template>
 
 <script>
 export default {
+  name: 'FilesView',
   data () {
-    return {
-      bucket_name: 'bucket test 123',
-      files: [
-        { id: 1, name: 'test file 1' },
-        { id: 2, name: 'test file 2' },
-        { id: 3, name: 'test file 3' }
-      ]
-    }
+    return {}
+  },
+  mounted () {
+    console.log('files mounted')
   }
 }
 </script>
 
-<style lang="css">
+<style lang="stylus">
+
 </style>

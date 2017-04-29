@@ -10,6 +10,11 @@ export default [
     component: require('components/BucketsView')
   },
   {
+    path: '/buckets/:bucketId',
+    name: 'files',
+    component: require('components/FilesView')
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     component: require('components/DashboardView')
