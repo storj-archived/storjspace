@@ -81,6 +81,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^0.14.0",
+    "electron-json-storage": "^3.0.5",
     "vue": "^2.3.0",
     "vuex": "^2.3.1"
   }

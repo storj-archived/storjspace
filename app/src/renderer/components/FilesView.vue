@@ -17,6 +17,7 @@ export default {
   },
   mounted () {
     console.log('files mounted')
+    console.log('$route', this.$route)
   }
 }
 </script>
