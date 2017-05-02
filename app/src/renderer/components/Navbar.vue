@@ -1,9 +1,9 @@
 <template lang="html">
-  <div>
+  <div> <!-- TODO need to find the class is a reserved keyword error here -->
     <b-navbar toggleable type="inverse" variant="primary">
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-      <b-link class="navbar-brand" to="landing-page">
+      <b-link class="navbar-brand" to="dashboard">
         <span><img src="../static/logos/logo-white.svg" height="40px" alt="Storj Labs"></span><span class="logo-text"> Space</span>
       </b-link>
 
@@ -18,9 +18,8 @@
       <b-nav is-nav-bar class="ml-auto">
         <b-nav-item-dropdown right-alignment>
 
-          <!-- Using text slot -->
           <template slot="text">
-            <span style="font-weight: bold;">User</span>
+            <span style="font-weight: bold;">{{ user.email }}</span>
           </template>
 
           <b-dropdown-item to="settings">Settings</b-dropdown-item>
@@ -41,9 +40,11 @@ export default {
     return {
       user: {
         _id: '',
-        email: ''
+        email: 'lott.dylan@gmail.com'
       }
     }
+  },
+  computed () {
   },
   components: {},
   methods: {}

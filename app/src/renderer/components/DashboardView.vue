@@ -13,7 +13,7 @@
           </div>
 
           <div class="col bandwidth">
-            <b-card header="Storage"
+            <b-card header="Bandwidth"
               class="mb-2">
               <h1>{{ bandwidth }}</h1>
             </b-card>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+const storage = require('electron-json-storage')
+
 export default {
   name: 'DashboardView',
   components: {},
@@ -34,6 +36,14 @@ export default {
       balance: 0,
       card_info: {},
       transactions: []
+    }
+  },
+  computed: {
+    user: () => {
+      return storage.get('user', (err, data) => {
+        if (err) console.log(`error getting user: ${err}`)
+        return data
+      })
     }
   }
 }

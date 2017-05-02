@@ -80,6 +80,7 @@
     "webpack-merge": "^2.4.0"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "bootstrap-vue": "^0.14.0",
     "electron-json-storage": "^3.0.5",
     "vue": "^2.3.0",
