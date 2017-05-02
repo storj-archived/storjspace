@@ -19,7 +19,7 @@
         <b-nav-item-dropdown right-alignment>
 
           <template slot="text">
-            <span style="font-weight: bold;">{{ user.email }}</span>
+            <span style="font-weight: bold;">{{ user }}</span>
           </template>
 
           <b-dropdown-item to="settings">Settings</b-dropdown-item>
@@ -34,20 +34,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Navbar',
   data () {
     return {
-      user: {
-        _id: '',
-        email: 'lott.dylan@gmail.com'
-      }
+      user: {}
     }
   },
-  computed () {
-  },
-  components: {},
-  methods: {}
+  computed: mapState({
+    user: state => state.user
+  }),
+  created () {
+    this.$state.dispatch('getUser')
+  }
 }
 </script>
 

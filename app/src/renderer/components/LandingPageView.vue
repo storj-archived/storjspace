@@ -7,15 +7,19 @@
 
       <b-form-input
         type="text"
-        placeholder="Email">
+        name="email"
+        placeholder="Email"
+        v-model="user.email">
       </b-form-input>
 
       <b-form-input
         type="password"
-        placeholder="Password">
+        name="password"
+        placeholder="Password"
+        v-model="user.password">
       </b-form-input>
 
-      <b-button>
+      <b-button @click.native="submit(user)">
         Login
       </b-button>
     </div>
@@ -25,7 +29,13 @@
 <script>
   export default {
     components: {},
-    name: 'landing-page'
+    name: 'landing-page',
+    methods: {
+      submit (user) {
+        console.log('logging in user: ', user)
+        this.$store.dispatch('login', user)
+      }
+    }
   }
 </script>
 

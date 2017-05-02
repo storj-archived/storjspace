@@ -1,16 +1,31 @@
 import * as types from '../mutation-types'
 import config from '../../config'
+import storage from 'electron-json-storage'
 
-const storage = require('electron-json-storage')
 const Database = require('nedb')
 const users = new Database({
   filename: config.USERS_DB,
   autoload: true
 })
 
+function getActiveUser () {
+  return storage.get('user', (err, user) => {
+    if (err) console.log(`Error getting active user ${err}`)
+    return user
+  })
+}
+
+function getEmail () {
+  return storage.get('user', (err, user) => {
+    if (err) return null
+    console.log(user)
+    return user
+  })
+}
+
 const state = {
   id: '',
-  email: '',
+  email: getEmail(),
   password: '',
   uniqueHash: '',
   authed: false
@@ -30,6 +45,9 @@ const mutations = {
     state.authed = false
     state.loading = false
     state.errors = errors
+  },
+  [types.SET_USER] (state, user) {
+    state.user = user
   }
 }
 
@@ -55,10 +73,9 @@ const actions = {
   },
 
   getUser ({commit, state}) {
-    return storage.get('user', function (err, user) {
-      if (err) return err
-      return user
-    })
+    const user = getActiveUser()
+    commit(types.SET_USER, user)
+    return user
   }
 }
 
