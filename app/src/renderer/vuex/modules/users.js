@@ -1,47 +1,63 @@
 import * as types from '../mutation-types'
-import Storj from 'vendor/storj.es5.js'
 import config from '../../config'
+
 const storage = require('electron-json-storage')
-const storj = new Storj(config)
-
-const keypair = storj.generateKeyPair()
-const key = storj.generateKeyPair().getPrivateKey()
-const encryptionKey = storj.generateEncryptionKey()
-
-console.log('key', key)
-console.log('keypair', keypair)
-console.log('encryptionKey', encryptionKey)
+const Database = require('nedb')
+const users = new Database({
+  filename: config.USERS_DB,
+  autoload: true
+})
 
 const state = {
   id: '',
   email: '',
-  authed: false,
-  privkey: '',
-  pubkey: '',
-  keyList: [],
-  basicAuth: {},
-  keyPair: {}
+  password: '',
+  uniqueHash: '',
+  authed: false
 }
 
 const mutations = {
-  [types.LOGIN_USER_REQUEST] (state, { basicAuth }) {
+  [types.LOGIN_USER_REQUEST] (state) {
+    state.loading = true
+    state.authed = false
+  },
+  [types.LOGIN_USER_SUCCESS] (state, { basicAuth }) {
     state.basicAuth = basicAuth
+    state.authed = true
+    state.loading = false
+  },
+  [types.LOGIN_USER_FAILURE] (state, errors) {
+    state.authed = false
+    state.loading = false
+    state.errors = errors
   }
 }
 
 const actions = {
-  setBasicAuth ({commit}, basicAuth) {
-    storage.set('basicAuth', {
-      email: basicAuth.email,
-      password: basicAuth.password
+  login ({commit}, user) {
+    commit(types.LOGIN_USER_REQUEST)
+    users.findOne({ email: user.email }, (err, user) => {
+      if (err) console.log('error finding user: ', err)
+
+      storage.set('user', {
+        email: user.email,
+        password: user.password
+      })
+
+      storage.get('user', function (err, user) {
+        if (err) console.log('Error getting user after login: ', err)
+        console.log('got user', user)
+      })
+
+      console.log('user: ', user)
+      return user
     })
   },
 
-  registerKey ({commit}) {
-    storj.registerKey(keypair.getPublicKey(), function (err) {
-      if (err) {
-        return err
-      }
+  getUser ({commit, state}) {
+    return storage.get('user', function (err, user) {
+      if (err) return err
+      return user
     })
   }
 }

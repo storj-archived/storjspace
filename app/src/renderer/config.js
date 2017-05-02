@@ -4,10 +4,6 @@ const BRIDGE_URL = process.env.NODE_ENV === 'development'
 
 export default {
   bridge: BRIDGE_URL,
-  basicAuth: {
-    email: '',
-    password: ''
-  },
-  key: '',
-  encryptionKey: ''
+  USERS_DB: 'users.db',
+  filePath: ''
 }

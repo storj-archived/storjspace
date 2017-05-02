@@ -83,6 +83,7 @@
     "bluebird": "^3.5.0",
     "bootstrap-vue": "^0.14.0",
     "electron-json-storage": "^3.0.5",
+    "nedb": "^1.8.0",
     "vue": "^2.3.0",
     "vuex": "^2.3.1"
   }

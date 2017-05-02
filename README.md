@@ -2,6 +2,18 @@
 
 > An electron-vue uploader, downloader, and dashboard for the Storj network
 
+
+## Roadmap
+
+### v1.0 release goals
+- [ ] User management and settings
+- [ ] Key storage per multiple users
+- [ ] Key retrieval / export for transfer
+- [ ] List buckets
+- [ ] List files in bucket
+- [ ] Drag and drop file upload
+- [ ] File download
+
 ## Build Setup
 
 ``` bash
