@@ -1,33 +1,48 @@
 export default [
   {
     path: '/',
-    name: 'landing-page',
-    component: require('components/LandingPageView')
+    name: 'login',
+    component: require('components/LoginView')
   },
   {
     path: '/buckets',
     name: 'buckets',
-    component: require('components/BucketsView')
+    component: require('components/BucketsView'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/buckets/:bucketId',
     name: 'files',
-    component: require('components/FilesView')
+    component: require('components/FilesView'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: require('components/DashboardView')
+    component: require('components/DashboardView'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/settings',
     name: 'settings',
-    component: require('components/SettingsView')
+    component: require('components/SettingsView'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/upload',
     name: 'upload',
-    component: require('components/UploadView.vue')
+    component: require('components/UploadView.vue'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '*',

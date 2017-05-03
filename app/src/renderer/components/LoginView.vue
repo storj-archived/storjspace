@@ -29,7 +29,15 @@
 <script>
   export default {
     components: {},
-    name: 'landing-page',
+    name: 'login',
+    data () {
+      return {
+        user: {
+          email: '',
+          password: ''
+        }
+      }
+    },
     methods: {
       submit (user) {
         console.log('logging in user: ', user)

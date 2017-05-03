@@ -26,6 +26,7 @@ function getEmail () {
 const state = {
   id: '',
   email: getEmail(),
+  user: getActiveUser(),
   password: '',
   uniqueHash: '',
   authed: false
@@ -48,6 +49,14 @@ const mutations = {
   },
   [types.SET_USER] (state, user) {
     state.user = user
+  },
+  [types.LOGOUT_USER_REQUEST] (state) {
+    state.loading = true
+  },
+  [types.LOGOUT_USER_SUCCESS] (state) {
+    state.user = null
+    state.loading = false
+    state.success = true
   }
 }
 
@@ -62,17 +71,20 @@ const actions = {
         password: user.password
       })
 
-      storage.get('user', function (err, user) {
-        if (err) console.log('Error getting user after login: ', err)
-        console.log('got user', user)
-      })
-
       console.log('user: ', user)
       return user
     })
   },
 
-  getUser ({commit, state}) {
+  logout ({ commit }) {
+    commit(types.LOGOUT_USER_REQUEST)
+    storage.clear((err) => {
+      commit(types.LOGOUT_USER_SUCCESS)
+      if (err) console.log(`Error clearing storage: ${err}`)
+    })
+  },
+
+  getUser ({commit}) {
     const user = getActiveUser()
     commit(types.SET_USER, user)
     return user

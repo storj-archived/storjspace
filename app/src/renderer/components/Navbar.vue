@@ -23,7 +23,7 @@
           </template>
 
           <b-dropdown-item to="settings">Settings</b-dropdown-item>
-          <b-dropdown-item to="#" >Signout</b-dropdown-item>
+          <b-dropdown-item @click.native="logout()" >Signout</b-dropdown-item>
         </b-nav-item-dropdown>
 
       </b-nav>
@@ -35,19 +35,29 @@
 
 <script>
 import { mapState } from 'vuex'
+import router from '../routes'
+import storage from 'electron-json-storage'
 
 export default {
   name: 'Navbar',
   data () {
     return {
-      user: {}
+      user: storage.get('user', (err, user) => {
+        if (err) return null
+        return user
+      })
     }
   },
   computed: mapState({
     user: state => state.user
   }),
-  created () {
-    this.$state.dispatch('getUser')
+  methods: {
+    logout () {
+      storage.clear((err) => {
+        if (err) console.log(`Error clearing storage: ${err}`)
+        router.push({path: '/'})
+      })
+    }
   }
 }
 </script>
