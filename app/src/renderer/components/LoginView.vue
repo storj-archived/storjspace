@@ -4,47 +4,65 @@
       <div class="header">
         <h1>Login to Storj</h1>
       </div>
+      <form v-model="user">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <b-form-input
+              type="text"
+              name="email"
+              placeholder="Email"
+              v-model="user.email">
+            </b-form-input>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <b-form-input
+              type="password"
+              name="password"
+              placeholder="Password"
+              v-model="user.password">
+            </b-form-input>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b-button type="submit" @click.native="submit(user)">
+              Login
+            </b-button>
+          </div>
+        </div>
+    </form>
 
-      <b-form-input
-        type="text"
-        name="email"
-        placeholder="Email"
-        v-model="user.email">
-      </b-form-input>
-
-      <b-form-input
-        type="password"
-        name="password"
-        placeholder="Password"
-        v-model="user.password">
-      </b-form-input>
-
-      <b-button @click.native="submit(user)">
-        Login
-      </b-button>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    components: {},
-    name: 'login',
-    data () {
-      return {
-        user: {
-          email: '',
-          password: ''
-        }
-      }
-    },
-    methods: {
-      submit (user) {
-        console.log('logging in user: ', user)
-        this.$store.dispatch('login', user)
+import router from '../routes'
+
+export default {
+  name: 'login',
+  data () {
+    return {
+      user: {
+        email: '',
+        password: ''
       }
     }
+  },
+  methods: {
+    submit (user) {
+      console.log('logging in user: ', user)
+      this.$store.dispatch('login', user)
+      router.push({ name: 'dashboard' })
+    }
   }
+}
 </script>
 
 <style scoped lang="stylus">

@@ -1,34 +1,55 @@
 import * as types from '../mutation-types'
 import config from '../../config'
 import storage from 'electron-json-storage'
+import Storj from 'vendor/storj.es5.js'
 
+const storj = new Storj()
 const Database = require('nedb')
 const users = new Database({
   filename: config.USERS_DB,
   autoload: true
 })
 
+function registerUser () {
+  const key = storj.generateKeyPair().getPrivateKey()
+  const encryptionKey = storj.generateEncryptionKey()
+  storage.set('keypair', {
+    privkey: key,
+    encryptionKey: encryptionKey
+  }, (err, keypair) => {
+    if (err) console.log('Error storing keypair: ', err)
+    console.log('Keypair created: ', keypair)
+    return keypair
+  })
+}
+
 function getActiveUser () {
   return storage.get('user', (err, user) => {
     if (err) console.log(`Error getting active user ${err}`)
+    console.log(`getActiveUser`, user)
     return user
   })
 }
 
 function getEmail () {
   return storage.get('user', (err, user) => {
-    if (err) return null
-    console.log(user)
-    return user
+    if (err) console.log('error getting email', err)
+    console.log(user.email)
+    return user.email
   })
 }
 
+function getKeyPair () {
+  return [{
+    privkey: '',
+    pubkey: ''
+  }]
+}
+
 const state = {
-  id: '',
   email: getEmail(),
   user: getActiveUser(),
-  password: '',
-  uniqueHash: '',
+  keypair: getKeyPair(),
   authed: false
 }
 
@@ -49,6 +70,10 @@ const mutations = {
   },
   [types.SET_USER] (state, user) {
     state.user = user
+    state.keypair = getKeyPair()
+    state.email = getEmail()
+    state.user = getActiveUser()
+    state.authed = true
   },
   [types.LOGOUT_USER_REQUEST] (state) {
     state.loading = true
@@ -62,32 +87,48 @@ const mutations = {
 
 const actions = {
   login ({commit}, user) {
+    console.log('Reached user module: ', user)
     commit(types.LOGIN_USER_REQUEST)
-    users.findOne({ email: user.email }, (err, user) => {
-      if (err) console.log('error finding user: ', err)
 
-      storage.set('user', {
-        email: user.email,
-        password: user.password
-      })
+    users.findOne({ email: user.email }, (err, doc) => {
+      if (err) console.log('error finding user: ', err)
+      console.log('users findOne', doc)
+
+      if (!doc) {
+        users.insert(user, (err, user) => {
+          if (err) console.log(`Error saving user: ${err}`)
+          console.log('User added: ', user)
+
+          const keypair = registerUser()
+
+          console.log(keypair)
+          storage.get('keypair', (err, keypair) => {
+            console.log('error: ', err)
+            console.log('keypair login: ', keypair)
+          })
+
+          storage.set('user', user, function (err, user) {
+            if (err) console.log(err)
+            console.log(user)
+          })
+        })
+      }
 
       console.log('user: ', user)
       return user
     })
   },
 
-  logout ({ commit }) {
-    commit(types.LOGOUT_USER_REQUEST)
-    storage.clear((err) => {
-      commit(types.LOGOUT_USER_SUCCESS)
-      if (err) console.log(`Error clearing storage: ${err}`)
-    })
-  },
+  // logout ({ commit }) {
+  //   commit(types.LOGOUT_USER_REQUEST)
+  //   storage.clear((err) => {
+  //     commit(types.LOGOUT_USER_SUCCESS)
+  //     if (err) console.log(`Error clearing storage: ${err}`)
+  //   })
+  // },
 
   getUser ({commit}) {
-    const user = getActiveUser()
-    commit(types.SET_USER, user)
-    return user
+    return getActiveUser()
   }
 }
 

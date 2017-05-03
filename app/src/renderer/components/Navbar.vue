@@ -35,8 +35,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import router from '../routes'
-import storage from 'electron-json-storage'
 
 export default {
   name: 'Navbar',
@@ -48,14 +46,7 @@ export default {
   computed: mapState({
     user: state => state.user
   }),
-  methods: {
-    logout () {
-      storage.clear((err) => {
-        if (err) console.log(`Error clearing storage: ${err}`)
-        router.push({path: '/'})
-      })
-    }
-  }
+  methods: {}
 }
 </script>
 
