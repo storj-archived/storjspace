@@ -9,14 +9,14 @@
 
       <b-collapse is-nav id="nav_collapse">
 
-      <b-nav is-nav-bar>
+      <b-nav is-nav-bar v-if="user">
         <b-nav-item :to="{ name: 'dashboard' }">Dashboard</b-nav-item>
         <b-nav-item :to="{ name: 'buckets' }">Buckets</b-nav-item>
         <b-nav-item :to="{ name: 'upload' }">Upload Files</b-nav-item>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
-        <b-nav-item-dropdown right-alignment>
+        <b-nav-item-dropdown right-alignment v-if="user">
 
           <template slot="text">
             <span style="font-weight: bold;">{{ user }}</span>
@@ -42,10 +42,7 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      user: storage.get('user', (err, user) => {
-        if (err) return null
-        return user
-      })
+
     }
   },
   computed: mapState({
