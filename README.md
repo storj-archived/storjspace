@@ -2,13 +2,17 @@
 
 > An electron-vue uploader, downloader, and dashboard for the Storj network
 
+# Stability Warnings
+
+This project is still under development and will not be stable for a few months. 
+Since the Storj network is undergoing a lot of changes in the coming months, this build will be frequently broken.
 
 ## Roadmap
 
 ### v1.0 release goals
-- [ ] User management and settings
-- [ ] Key storage per multiple users
-- [ ] Key retrieval / export for transfer
+- [x] User management and settings
+- [ ] Key creation and management
+- [ ] Key export for backup 
 - [ ] List buckets
 - [ ] List files in bucket
 - [ ] Drag and drop file upload
@@ -32,8 +36,5 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
-More information can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/docs/npm_scripts.html).
-
 ---
 
-This project was generated from [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about this project can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).

@@ -2,6 +2,7 @@ import * as types from '../mutation-types'
 import config from '../../config'
 import storage from 'electron-json-storage'
 import Storj from 'vendor/storj.es5.js'
+import router from '../../routes'
 
 const storj = new Storj()
 const Database = require('nedb')
@@ -26,7 +27,7 @@ function registerUser () {
 function getActiveUser () {
   return storage.get('user', (err, user) => {
     if (err) console.log(`Error getting active user ${err}`)
-    console.log(`getActiveUser`, user)
+    console.log('getActiveUser: ', user)
     return user
   })
 }
@@ -34,7 +35,6 @@ function getActiveUser () {
 function getEmail () {
   return storage.get('user', (err, user) => {
     if (err) console.log('error getting email', err)
-    console.log(user.email)
     return user.email
   })
 }
@@ -49,8 +49,7 @@ function getKeyPair () {
 const state = {
   email: getEmail(),
   user: getActiveUser(),
-  keypair: getKeyPair(),
-  authed: false
+  keypair: getKeyPair()
 }
 
 const mutations = {
@@ -107,10 +106,7 @@ const actions = {
             console.log('keypair login: ', keypair)
           })
 
-          storage.set('user', user, function (err, user) {
-            if (err) console.log(err)
-            console.log(user)
-          })
+          router.push({ path: '/dashboard' })
         })
       }
 
@@ -119,13 +115,14 @@ const actions = {
     })
   },
 
-  // logout ({ commit }) {
-  //   commit(types.LOGOUT_USER_REQUEST)
-  //   storage.clear((err) => {
-  //     commit(types.LOGOUT_USER_SUCCESS)
-  //     if (err) console.log(`Error clearing storage: ${err}`)
-  //   })
-  // },
+  logout ({ commit }) {
+    commit(types.LOGOUT_USER_REQUEST)
+    storage.clear((err) => {
+      commit(types.LOGOUT_USER_SUCCESS)
+      if (err) console.log(`Error clearing storage: ${err}`)
+      router.push('/')
+    })
+  },
 
   getUser ({commit}) {
     return getActiveUser()

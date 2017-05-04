@@ -7,11 +7,9 @@
 
 <script>
 import Navbar from './components/Navbar'
-import store from 'renderer/vuex/store'
 
 export default {
-  components: { Navbar },
-  store
+  components: { Navbar }
 }
 </script>
 

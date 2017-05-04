@@ -7,7 +7,7 @@
       <form v-model="user">
         <div class="row">
           <div class="col"></div>
-          <div class="col">
+          <div class="form-box">
             <b-form-input
               type="text"
               name="email"
@@ -19,7 +19,7 @@
         </div>
         <div class="row">
           <div class="col"></div>
-          <div class="col">
+          <div class="form-box">
             <b-form-input
               type="password"
               name="password"
@@ -44,6 +44,7 @@
 
 <script>
 import router from '../routes'
+import storage from 'electron-json-storage'
 
 export default {
   name: 'login',
@@ -59,8 +60,13 @@ export default {
     submit (user) {
       console.log('logging in user: ', user)
       this.$store.dispatch('login', user)
-      router.push({ name: 'dashboard' })
     }
+  },
+  created () {
+    storage.get('user', (err, user) => {
+      if (err) console.log(err)
+      if (user.email !== '' || undefined) router.push({ name: 'dashboard' })
+    })
   }
 }
 </script>
@@ -71,4 +77,8 @@ export default {
     margin: 0 auto
     margin-top: 100px
     text-align: center
+
+  .form-box
+    width: 350px
+    margin: 10px
 </style>

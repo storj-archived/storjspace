@@ -2,6 +2,8 @@
     <div class="dashboard">
       <div class="header">
         <h1>Dashboard</h1>
+
+        {{ user }}
       </div>
 
       <div class="row metrics">
@@ -23,14 +25,13 @@
 </template>
 
 <script>
-const storage = require('electron-json-storage')
+import { mapState } from 'vuex'
 
 export default {
   name: 'DashboardView',
   components: {},
   data () {
     return {
-      user: {},
       bandwidth: 0,
       storage: 0,
       balance: 0,
@@ -38,14 +39,9 @@ export default {
       transactions: []
     }
   },
-  computed: {
-    user: () => {
-      return storage.get('user', (err, data) => {
-        if (err) console.log(`error getting user: ${err}`)
-        return data
-      })
-    }
-  }
+  computed: mapState({
+    user: state => state.user
+  })
 }
 </script>
 

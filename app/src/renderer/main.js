@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import routes from './routes'
-import storage from 'electron-json-storage'
+import store from 'renderer/vuex/store'
 
 Vue.use(BootstrapVue)
 Vue.use(Electron)
@@ -21,19 +21,9 @@ const router = new Router({
   routes
 })
 
-const user = storage.get('user', (err, user) => {
-  if (err) return err
-  return user
-})
-
-router.beforeEach((to, from, next) => {
-  (to.meta.auth && !user)
-    ? next({path: '/'})
-    : next(true)
-})
-
 /* eslint-disable no-new */
 new Vue({
+  store,
   router,
   ...App
 }).$mount('#app')
