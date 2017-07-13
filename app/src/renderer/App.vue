@@ -9,6 +9,7 @@
 import Navbar from './components/Navbar'
 
 export default {
+  name: 'storjspace',
   components: { Navbar }
 }
 </script>

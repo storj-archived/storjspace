@@ -125,12 +125,26 @@ const actions = {
   },
 
   getUser ({commit}) {
+    commit(types.SET_USER, getActiveUser())
     return getActiveUser()
+  }
+}
+
+const getters = {
+  getUser: (state, getters) => {
+    return state.user
+  },
+  getEmail: (state, getters) => {
+    return state.email
+  },
+  getKeyPair: (state, getters) => {
+    return state.keypair
   }
 }
 
 export default {
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }
